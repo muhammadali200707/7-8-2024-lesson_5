@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <h1>All books here 📚 -> </h1>
+    {% if message == 'Not found such as book, check spelling or name of book !' %}
+        <h2>{{ message }}</h2>
+    {% else %}
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for book in books %}
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{ book.image.url }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <a href="{% url 'book-detail' book.id %}">
+                                <h5 class="card-title">{{ book.title }}</h5>
+                            </a>
+<!--                            <p class="card-text">{{ book.description }}</p>-->
+                        </div>
+<!--                        <div class="card-footer">-->
+<!--                            <small class="text-body-secondary">{{ book.author.get_full_name }}</small>-->
+<!--                        </div>-->
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

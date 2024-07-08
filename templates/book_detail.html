@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if message != "We couldn't find such as book" %}
+        <div class="card" style="width: 18rem;">
+           <img src="{{ book.image.url }}" class="card-img-top" alt="...">
+        </div>
+        <div class="card text-center">
+          <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="true" href="#">Title : {{ book.title }}🐍</a>
+    <!--              <ul class="Nav-item_menu">-->
+    <!--                <li><a class="dropdown-item" href="#">Action</a></li>-->
+    <!--                <li><a class="dropdown-item" href="#">Another action</a></li>-->
+    <!--                <li><hr class="dropdown-divider"></li>-->
+    <!--                <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+    <!--              </ul>-->
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Author: {{ book.author }}✍️</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true">Price: {{ book.price }}💸</a>
+              </li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Description:</h5>
+            <p class="card-text">{{ book.description }}</p>
+            <a href="http://127.0.0.1:8000/books/" class="btn btn-primary">All books --> 📚 </a>
+          </div>
+        </div>
+    {% endif %}
+{% endblock %}
+</body>
+</html>
