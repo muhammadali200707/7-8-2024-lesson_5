@@ -25,11 +25,32 @@
               <a class="nav-link disabled" aria-disabled="true">Link</a>
             </li>
           </ul>
-          <form class="d-flex" method="POST">
-              {% csrf_token %}
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" value="{{ value }}">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+            <div>
+              <form class="d-flex" method="POST">
+                  {% csrf_token %}
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" value="{{ value }}">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+            </div>
+           <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {% if request.user.is_authenticated %}
+                    {{ request.user.get_full_name }}
+                  {% else %}
+                        Profile
+                  {% endif  %}
+              </button>
+              <ul class="dropdown-menu">
+                  {% if request.user.is_authenticated %}
+                <li><a class="dropdown-item" href="{% url 'home' %}">Profile</a><</li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a><</li>
+                  {% else %}
+
+                <li><a class="dropdown-item" href="{% url 'login' %}">Login</a><</li>
+                <li><a class="dropdown-item" href="{% url 'register' %}">Register</a><</li>
+                  {% endif %}
+              </ul>
+           </div>
         </div>
       </div>
     </nav>
